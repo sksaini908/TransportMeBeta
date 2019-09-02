@@ -4,7 +4,7 @@
 
     Development Of TransPortMe
     
-    Author : Ramesh Chandra
+    Author : Sunil Kumar
     
     Final Year CSE BTech
     
@@ -19,7 +19,7 @@
     
     Development Of TransPortMe
    
-    Author : Ramesh Chandra
+    Author : Sunil Kumar
     
     TransPortMe : One App For All Type of Cabs Booking
       
