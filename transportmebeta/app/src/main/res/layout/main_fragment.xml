@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    tools:context=".MainActivity">
+
+    <!-- lavel to show before source input text box-->
+    <TextView
+        android:id="@+id/textViewFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/input_lable_from"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#0099FF"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp" />
+    <!-- input text field  to get source from user -->
+    <EditText
+        android:id="@+id/editTextFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+
+        android:autoText="true"
+        android:inputType="textPersonName"
+        android:layout_alignTop="@+id/textViewFrom"
+        android:layout_alignLeft="@+id/editTextTo"
+        android:layout_alignStart="@+id/editTextTo">
+
+    </EditText>
+    <!-- lavel to show before destination input text box-->
+    <TextView
+        android:id="@+id/textViewTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textViewFrom"
+        android:layout_marginTop="23dp"
+        android:text="@string/input_lable_to"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#0099FF"
+        android:layout_alignRight="@+id/textViewFrom"
+        android:layout_alignEnd="@+id/textViewFrom" />
+    <!-- input text field  to get destination from user -->
+    <EditText
+        android:id="@+id/editTextTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textPersonName"
+        android:layout_alignTop="@+id/textViewTo"
+        android:layout_centerHorizontal="true">
+
+    </EditText>
+    <!-- Button to get source and destination from user as button is clicked -->
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#0099FF"
+        android:text="@string/sub"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_below="@+id/editTextTo"
+        android:layout_toRightOf="@+id/editTextTo"
+        android:layout_toEndOf="@+id/editTextTo" />
+    <!-- List view show all possible option of Transport -->
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button1">
+    </ListView>
+
+</RelativeLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="Email"
+        android:id="@+id/textViewEmailVerification"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textEmailAddress"
+        android:imeOptions="actionNext"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+       android:hint="Verification Code"
+        android:id="@+id/textViewVerificationCode"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textViewEmailVerification"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textPersonName"
+        android:imeOptions="actionNext"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="New Password"
+        android:id="@+id/textViewPassword"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textViewVerificationCode"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textPassword"
+        android:imeOptions="actionNext"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="Retype New Password"
+        android:id="@+id/textViewRePassword"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textViewPassword"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textPassword"
+        android:imeOptions="actionDone"
+        android:layout_centerHorizontal="true"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set New Password"
+        android:id="@+id/buttonSubmitVerification"
+        android:layout_below="@+id/textViewRePassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resend Verification Code"
+        android:id="@+id/buttonResendVerificationCode"
+        android:layout_below="@+id/buttonSubmitVerification"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+</RelativeLayout>

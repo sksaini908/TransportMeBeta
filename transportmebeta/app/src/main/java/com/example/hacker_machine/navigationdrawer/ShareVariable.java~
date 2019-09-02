@@ -1,0 +1,34 @@
+package com.example.hacker_machine.navigationdrawer;
+
+import android.app.Application;
+
+/**
+ * Created by hacker-machine on 7/3/16.
+ * This class used to provide facility to set and get variable value from any class.
+ * You Can also make some more variable and method to get and set variable value to user across app
+ **/
+public class ShareVariable extends Application {
+
+    private String userName=null,Destination=null,Source=null,Name="unknown";
+    private  double st_latitude=0,st_longitude=0,end_latitude=0,end_longitude=0;
+    public String getUserName()     {return userName;}
+    public String getName()         {return  Name;}
+    public String getSource()       {return Source;}
+    public String getDestination()  {return Destination;}
+    public double getSt_latitude()        {return st_latitude;}
+    public double getSt_longitude()        {return st_longitude;}
+    public double getEnd_latitude()        {return end_latitude;}
+    public double getEnd_longitude()        {return end_longitude;}
+    public void setUserName(String username)    {this.userName = username; }
+    public void setName(String name)            {this.Name = name;}
+    public void setSource(String source)        {this.Source=source;}
+    public void setDestination(String destination)        {this.Destination=destination;}
+    public void setSt_latitude(double latitude)        {this.st_latitude=latitude;}
+    public void setSt_longitude(double longitude)        {this.st_longitude=longitude;}
+    public void setEnd_latitude(double latitude)        {this.end_latitude=latitude;}
+    public void setEnd_longitude(double longitude)        {this.end_longitude=longitude;}
+
+    /*((ShareVariable) this.getApplication()).setSomeVariable("foo");
+     *String s = ((ShareVariable) this.getApplication()).getSomeVariable();
+    */
+}

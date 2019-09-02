@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Time Pass Service"
+        android:id="@+id/textViewTimePass"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play Music"
+        android:id="@+id/PlayMusic"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/White"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello"
+        android:layout_below="@+id/PlayMusic"
+        android:id="@+id/text1"/>
+    <Button
+        android:id="@+id/open"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Open MP3 file"
+        android:layout_below="@+id/text1"/>
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/open"/>
+</RelativeLayout>

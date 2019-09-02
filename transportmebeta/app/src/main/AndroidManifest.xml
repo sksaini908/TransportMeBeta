@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.hacker_machine.navigationdrawer">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission  android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+    <!--Put all activity inside application...After a lot of struggle get to know this culprit  -->
+    <application
+
+        android:name=".ShareVariable"
+        android:allowClearUserData="false"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainSplashScreen"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- Main Activity-->
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name=".MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- ServiceCabs activity -->
+        <activity
+            android:name=".ServiceCabs"
+            android:label="Cabs Booking"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name=".MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!--Public Transport activity -->
+        <activity
+            android:name=".ServicePublicTransport"
+            android:label="Public Transport"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name=".MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- ServiceNavigator activity -->
+        <activity
+            android:name=".ServiceNavigator"
+            android:label="Navigator"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name=".MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Time Pass activity -->
+        <activity
+            android:name=".ServiceTimePass"
+            android:label="Leisure"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Profile activity -->
+        <activity
+            android:name=".Profile"
+            android:label="Profile"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Login activity -->
+        <!-- Signup activity -->
+        <activity
+            android:name=".SignUp"
+            android:label="SignUp"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- ForgotPassword activity -->
+        <activity
+            android:name=".ForgotPassword"
+            android:label="ForgotPassword"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- EmailVerification activity -->
+        <activity
+            android:name=".EmailVerification"
+            android:label="Email Verification"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- NavigationUpdater activity -->
+        <activity
+            android:name=".Navigation"
+            android:label="Navigator"
+            android:parentActivityName=".ServiceCabs"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- UBEr Sample Activity activity -->
+        <activity
+            android:name=".API_Uber"
+            android:label="Take A Ride With Uber"
+            android:parentActivityName=".ServiceCabs">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Mail Activity activity -->
+        <activity
+            android:name=".API_SendMail"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Share app with friend-->
+        <activity
+            android:name=".Share"
+            android:label="Recommend"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- About us with friend-->
+        <activity
+            android:name=".AboutUs"
+            android:label="About Us"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Rate App -->
+        <activity
+            android:name=".RateUs"
+            android:label="Rate App"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Feedback -->
+        <activity
+            android:name=".SendFeedback"
+            android:label="Send Feedback"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Mp3player listing all songs in sd -->
+        <!-- GeoCoOrdinate Activity activity -->
+        <activity
+            android:name=".API_GeoCoOrdinate"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- GeoCode API Prediction-->
+        <activity
+            android:name=".API_AutoComplete"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ProfileImageHandler"
+            android:parentActivityName=".Profile">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.Profile" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ImageListView"
+            android:parentActivityName=".ProfileImageHandler">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.ProfileImageHandler" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ViewFullImage"
+            android:parentActivityName=".ProfileImageHandler">
+            <intent-filter>
+                <action android:name="com.example.hacker_machine.navigationdrawer.ProfileImageHandler" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- LyftAPIHandler -->
+        <activity android:name=".LyftAPIHandler"
+            android:parentActivityName=".ServiceCabs">
+            <intent-filter>
+                <action android:name=".MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- LyftAppTrigger -->
+        <activity android:name=".LyftAppTrigger"
+            android:parentActivityName=".ServiceCabs">
+            <action android:name=".MainActivity" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </activity>
+    </application>
+
+</manifest>

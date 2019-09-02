@@ -1,0 +1,399 @@
+package com.example.hacker_machine.navigationdrawer;
+
+/**
+ * Created by hacker-machine on 6/3/16.
+ */
+
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by hacker-machine on 3/3/16.
+ */
+public class ServiceCabs extends AppCompatActivity{
+    // Widget Button Declare
+    Button btnLoginDialog2;
+    String InternetAvailability="No Internet Connection",loguse2,logpass2,IAMREGISTEREDALREADY2="Failure",__source, __destination,
+            __uberResponse="",__uberResponse2="",TAG = "MyAwesomeApp";
+    ProgressDialog pDialog2;
+    Integer [] UberEstimatedTime = new Integer[1000];
+    String [] UbarCabsName= new String[1000],UberEstimatedPrice=new String[1000],UberProductID=new String[1000],
+            UberProductID2 = new  String[1000],CabName={""}, ETA={""}, Price={""},ProductId={""};
+    ListView list;Integer size =0;
+    String start_latitude="37.625732",start_longitude="-122.377807",end_latitude="37.785114",end_longitude="-122.406677";
+    String InternetAvailableFlag="No Internet Connection";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.service_cabs);
+        __source = ((ShareVariable) getApplication()).getSource();//take source and destination
+        __destination = ((ShareVariable) getApplication()).getDestination();
+        start_latitude = ((ShareVariable) getApplication()).getSt_latitude();
+        start_longitude = ((ShareVariable) getApplication()).getSt_longitude();
+        end_latitude =  ((ShareVariable) getApplication()).getEnd_latitude();
+        end_longitude =  ((ShareVariable) getApplication()).getEnd_longitude();
+
+        Button refresh= (Button) findViewById(R.id.btnRefresh);//refresh button again refresh list of cabs
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {/*
+                start_latitude = Double.toString(((ShareVariable) getApplication()).getSt_latitude());
+                start_longitude = Double.toString( ((ShareVariable) getApplication()).getSt_longitude());
+                end_latitude = Double.toString( ((ShareVariable) getApplication()).getEnd_latitude());
+                end_longitude = Double.toString( ((ShareVariable) getApplication()).getEnd_longitude());*/
+                start_latitude="37.625732";start_longitude="-122.377807";
+                end_latitude="37.785114";end_longitude="-122.406677";
+               UberCabsETA();
+            }
+        });
+        UberCabsETA();
+        // Init Widget Button and set click listener
+        btnLoginDialog2 = (Button) findViewById(R.id.btnLoginDialog);//for login dialog
+        btnLoginDialog2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == btnLoginDialog2) {
+                    //get username and password if user is already logged in.
+                    //and if not, then redirect to login activity
+                    String check_user_name = ((ShareVariable) getApplication()).getUserName();
+                    if( check_user_name != null) {
+                        Toast.makeText(getApplicationContext(),"Already Logged In",Toast.LENGTH_SHORT).show();
+                    }else {
+                        // Create Object of Dialog class
+                        final Dialog login2 = new Dialog(ServiceCabs.this);
+                        // Set GUI of login screen
+                        login2.setContentView(R.layout.login_dialog);
+                        login2.setTitle("Login to TransportMe");
+                        // Init button of login GUI
+                        Button btnLogin = (Button) login2.findViewById(R.id.btnLogin);
+                        Button btnCancel = (Button) login2.findViewById(R.id.btnCancel);
+                        Button btnSignUP = (Button) login2.findViewById(R.id.btnSignup);
+                        Button btnForgot = (Button) login2.findViewById(R.id.btnForgotPassword);
+                        final EditText txtUsername2 = (EditText) login2.findViewById(R.id.txtUsername);
+                        final EditText txtPassword2 = (EditText) login2.findViewById(R.id.txtPassword);
+                        // Attached listener for login GUI button
+                        btnLogin.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (txtUsername2.getText().toString().trim().length() > 0 &&
+                                        txtPassword2.getText().toString().trim().length() > 0) {
+                                    loguse2 = txtUsername2.getText().toString();
+                                    logpass2=txtPassword2.getText().toString();
+                                    VerifyingLoginInfo();
+                                    login2.dismiss();
+                                } else {
+                                    Toast.makeText(ServiceCabs.this,
+                                            "Please enter Username and Password", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                        btnCancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                login2.dismiss();
+                            }
+                        });
+                        btnSignUP.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(ServiceCabs.this, SignUp.class));
+                            }
+                        });
+                        btnForgot.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(ServiceCabs.this,ForgotPassword.class));
+                            }
+                        });
+                        // Make dialog box visible.
+                        login2.show();
+                    }
+                }
+            }
+        });
+    }
+    private String readInputStreamToString(HttpURLConnection connection) { //get response of http request
+        String result = null;
+        StringBuffer sb = new StringBuffer();
+        InputStream is = null;
+        try {
+            is = new BufferedInputStream(connection.getInputStream());
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String inputLine = "";
+            while ((inputLine = br.readLine()) != null) {
+                sb.append(inputLine);
+            }
+            result = sb.toString();
+        }
+        catch (Exception e) {
+            Log.i(TAG, "Error reading InputStream");
+            result = null;
+        }
+        finally {
+            if (is != null) {
+                try {
+                    is.close();
+                }
+                catch (IOException e) {
+                    Log.i(TAG, "Error closing InputStream");
+                }
+            }
+        }
+        return result;
+    }
+    private void UberCabsETA(){//to get uber cab info in given source and destination
+        class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                InternetAvailableFlag = "No Internet Connection";
+                pDialog2 = new ProgressDialog(ServiceCabs.this);
+                pDialog2.setMessage("Searcing for Uber Cabs.....");
+                pDialog2.setIndeterminate(false);
+                pDialog2.setCancelable(true);
+                pDialog2.show();
+            }
+            protected String doInBackground(String... params) {
+                try {
+
+                    URL url = new URL("https://api.uber.com/v1/estimates/time?" +
+                            "start_latitude=" + start_latitude +
+                            "&start_longitude=" + start_longitude +
+                            "&end_latitude=" + end_latitude +
+                            "&end_longitude=" + end_longitude +
+                            "&server_token=csBiRmlGA3NE1ztnaDn0H9kLA08iVKrpE3SVc4jj");
+                    String accessToken = "csBiRmlGA3NE1ztnaDn0H9kLA08iVKrpE3SVc4jj";
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestProperty("Content-Type", "application/json");
+                    conn.setRequestProperty("Authorization", "Token token=" + accessToken);
+                    conn.setRequestMethod("GET");
+
+                    conn.setConnectTimeout(10000);
+                    URL url2 = new URL("https://api.uber.com/v1/estimates/price?" +
+                            "start_latitude=" + start_latitude +
+                            "&start_longitude=" + start_longitude +
+                            "&end_latitude=" + end_latitude +
+                            "&end_longitude=" + end_longitude +
+                            "&server_token=csBiRmlGA3NE1ztnaDn0H9kLA08iVKrpE3SVc4jj");
+                    String accessToken2 = "csBiRmlGA3NE1ztnaDn0H9kLA08iVKrpE3SVc4jj";
+                    HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
+                    conn2.setRequestProperty("Content-Type", "application/json");
+                    conn2.setRequestProperty("Authorization", "Token token=" + accessToken2);
+                    conn2.setRequestMethod("GET");
+                    conn2.setConnectTimeout(10000);
+                    int httpStatus = conn.getResponseCode();
+                    int httpStatus2 = conn2.getResponseCode();
+
+                    Log.v("Request Status", "httpStatus " + httpStatus);
+                    Log.v("Request Status2", "httpStatus2 " + httpStatus2);
+
+                    if (httpStatus == 200 && httpStatus2 == 200) {
+                        __uberResponse = readInputStreamToString(conn);
+                        __uberResponse2 = readInputStreamToString(conn2);
+                        InternetAvailableFlag = readInputStreamToString(conn2);
+                    }
+                } catch (MalformedURLException me) {
+                    Log.i("MalformedURLException","MalformedURLException");
+                } catch (IOException e) {
+                    Log.i("IOException","IOException");
+                    e.printStackTrace();
+                }
+                return "success";
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                System.out.print(__uberResponse);
+                if(InternetAvailableFlag !=null && InternetAvailableFlag.equals("No Internet Connection") == true){
+                    Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
+                }else if(result!=null && result.equals("success") == true ){
+                    int a=0,b=0;
+                    try {
+                        JSONObject jsonObject = new JSONObject(__uberResponse);
+                        JSONArray jsonArray = jsonObject.getJSONArray("times");
+
+                        for(int i=0;i<jsonArray.length();i++){
+                            JSONObject  jsonObject1= jsonArray.getJSONObject(i);
+                            String localized_display_name = jsonObject1.getString("localized_display_name");
+                            int estimate = jsonObject1.getInt("estimate");
+                            String product = jsonObject1.getString("product_id");
+                            UbarCabsName[i]=localized_display_name;
+                            UberEstimatedTime[i]=estimate/60;
+                            UberProductID[i]=product;a=i;
+                        }
+                    } catch (JSONException jsonexception){
+                        Log.i("JSONException","JSONException");
+                    }
+                    try {
+                        JSONObject jsonObject = new JSONObject(__uberResponse2);
+                        JSONArray jsonArray = jsonObject.getJSONArray("prices");
+                        for(int i=0;i<jsonArray.length();i++){
+                            JSONObject  jsonObject1= jsonArray.getJSONObject(i);
+                            String localized_display_name = jsonObject1.getString("estimate");
+                            String product = jsonObject1.getString("product_id");
+                            UberEstimatedPrice[i]=localized_display_name;
+                            UberProductID2[i]=product;b=i;
+                        }
+                        size = Math.min(a,b);
+                        System.out.printf("%d\n", size);
+                        try {
+                            if(size != 0){
+                                populateUberCabsList();
+                                ListView cabsList = (ListView) findViewById(R.id.list);
+                                if (cabsList.getVisibility()== View.INVISIBLE ) {
+                                    cabsList.setVisibility(View.VISIBLE);
+                                }
+
+                            }else{
+                                Toast.makeText(getApplicationContext(),"No Cab Available",Toast.LENGTH_SHORT).show();
+                                ListView cabsList = (ListView) findViewById(R.id.list);
+                                if (cabsList.getVisibility()== View.VISIBLE ) {
+                                    cabsList.setVisibility(View.INVISIBLE);
+                                }
+                            }
+                        } catch (NullPointerException e){
+                            e.printStackTrace();
+                        }
+                    } catch (JSONException jsonexception){
+                        Log.i("JSONException", "JSONException");
+                    }
+                } else {
+                    Log.i("Request Error", "Error in Request");
+                    Toast.makeText(getApplicationContext(),"unknown error, refresh",Toast.LENGTH_SHORT).show();
+                }
+                pDialog2.dismiss();
+            }
+        }
+        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
+        sendPostReqAsyncTask.execute();
+    }
+    private void populateUberCabsList(){
+
+        CabName = new String[size];
+        ETA = new String[size];
+        Price = new String[size];
+        ProductId = new String[size];
+        for (int i = 0; i < size; i++) {
+            //System.out.printf("%s %s %d\n",UbarCabsName[i],UberEstimatedPrice[i],UberEstimatedTime[i]);
+            CabName[i] = UbarCabsName[i];
+            Price[i] = UberEstimatedPrice[i];
+            ETA[i] = UberEstimatedTime[i].toString();
+            ProductId[i] = UberProductID[i];
+        }
+        for (int i = 0; i < size; i++)
+            System.out.printf("%s %s %s\n", CabName[i], Price[i], ETA[i]);
+
+        CabsList adapter = new CabsList(ServiceCabs.this, CabName, ETA, Price, ProductId);
+
+        list = (ListView) findViewById(R.id.list);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(getApplicationContext(), "List Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void VerifyingLoginInfo(){ //login user in transport me
+        class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                InternetAvailability="No Internet Connection";
+                pDialog2 = new ProgressDialog(ServiceCabs.this);
+                pDialog2.setMessage("Verifying.....");
+                pDialog2.setIndeterminate(false);
+                pDialog2.setCancelable(true);
+                pDialog2.show();
+            }
+            protected String doInBackground(String... params) {
+
+                List<NameValuePair> param = new ArrayList<NameValuePair>();
+                param.add(new BasicNameValuePair("Username", loguse2));
+                param.add(new BasicNameValuePair("Password", logpass2));
+
+                try {
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost("http://rameshchandra.net23.net/login.php");
+                    httpPost.setEntity(new UrlEncodedFormEntity(param));
+
+                    HttpResponse response = httpClient.execute(httpPost);
+
+                    HttpEntity entity2 = response.getEntity();
+                    String responseStr2 = EntityUtils.toString(entity2);
+                    IAMREGISTEREDALREADY2 = responseStr2;
+                    InternetAvailability=responseStr2;
+                } catch (ClientProtocolException e) {
+                } catch (IOException e) {
+                }
+                return "success";
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                if(InternetAvailability != null && InternetAvailability == "No Internet Connection" ){
+                    Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
+                }else if(IAMREGISTEREDALREADY2.charAt(0) =='0'){
+                    Toast.makeText(getApplicationContext(),"Logged In",Toast.LENGTH_SHORT).show();
+                    ((ShareVariable) getApplication()).setUserName(loguse2);
+                    String __name="";
+                    for(int i=2;i<IAMREGISTEREDALREADY2.length();i++){
+                        if(IAMREGISTEREDALREADY2.charAt(i)=='#' ||IAMREGISTEREDALREADY2.charAt(i)=='<')break;
+                        else __name+=IAMREGISTEREDALREADY2.charAt(i);
+                    }
+                    if(__name != "") ((ShareVariable) getApplication()).setName(__name);
+
+                } else {
+                    Toast.makeText(getApplicationContext(),"username or password wrong",Toast.LENGTH_SHORT).show();
+                }
+                pDialog2.dismiss();
+            }
+        }
+        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
+        sendPostReqAsyncTask.execute();
+    }
+    @Override
+    public  boolean onCreateOptionsMenu(Menu menu){
+        //inflate the menu; this adds items to the action barr if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return  true;
+    }
+}

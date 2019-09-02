@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20px"
+            android:text="Write month name it will show month in autocomplete"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dip"></TextView>
+    </TableRow>
+    <TableRow>
+
+        <AutoCompleteTextView
+            android:id="@+id/Months"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:textStyle="bold"
+            android:width="250dip" />
+
+    </TableRow>
+
+</TableLayout>

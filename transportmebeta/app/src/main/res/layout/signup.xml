@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/SignupName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textPersonName"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/SignupUser"
+        android:hint="Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textEmailAddress"
+       android:layout_below="@+id/SignupName"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/buttonRegister"
+        android:layout_below="@+id/SignupUser"
+        android:layout_marginTop="15dp" />
+
+
+    <!--
+    <EditText
+        android:id="@+id/SignupPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textWebPassword"
+        android:layout_below="@+id/SignupUser"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/SignupRepass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Re-password"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textWebPassword"
+        android:imeOptions="actionDone"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/SignupPass"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/SignupOlaAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ola username"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textWebPassword"
+        android:imeOptions="actionDone"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/SignupRepass"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/SignupOlaPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ola password"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textWebPassword"
+        android:imeOptions="actionDone"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/SignupOlaAccount"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/SignupUberAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Uber username"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textWebPassword"
+        android:imeOptions="actionDone"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/SignupOlaPassword"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/SignupUberPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Uber password"
+        android:ems="10"
+        android:autoText="true"
+        android:inputType="textWebPassword"
+        android:imeOptions="actionDone"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/SignupUberAccount"
+        android:layout_centerHorizontal="true"/>
+-->
+</RelativeLayout>

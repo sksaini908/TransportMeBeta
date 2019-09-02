@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Azure">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Product Manager"
+        android:id="@+id/productManager"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@color/Green"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rutvik Niranjan"
+        android:id="@+id/productManagerName"
+        android:layout_below="@+id/productManager"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="rutvikniranjan@gmail.com"
+        android:id="@+id/productManagerEmail"
+        android:layout_below="@+id/productManagerName"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Blue"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Product Developer"
+        android:id="@+id/productDeveloper"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@color/Green"
+        android:layout_below="@+id/productManagerEmail"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ramesh Chandra"
+        android:id="@+id/productDeveloperName"
+        android:layout_below="@+id/productDeveloper"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="rameshc10695@gmail.com"
+        android:id="@+id/productDeveloperEmail"
+        android:layout_below="@+id/productDeveloperName"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Blue"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Product Designer"
+        android:id="@+id/productDesigner"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@color/Green"
+        android:layout_below="@+id/productDeveloperEmail"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gourav Roy"
+        android:id="@+id/productDesignerName"
+        android:layout_below="@+id/productDesigner"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="robrayneon@gmail.com"
+        android:id="@+id/productDesignerEmail"
+        android:layout_below="@+id/productDesignerName"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Blue"/>
+</RelativeLayout>
